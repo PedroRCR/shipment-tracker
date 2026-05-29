@@ -19,10 +19,6 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "shipment_event")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class ShipmentEvent {
 
     @Id
@@ -40,8 +36,50 @@ public class ShipmentEvent {
     @JoinColumn(name = "shipment_id", nullable = false)
     private Shipment shipment;
 
+    public ShipmentEvent() {
+    }
+
+    public ShipmentEvent(Integer id, ShipmentStatus statusName, LocalDateTime occurredAt, Shipment shipment) {
+        this.id = id;
+        this.statusName = statusName;
+        this.occurredAt = occurredAt;
+        this.shipment = shipment;
+    }
+
     @PrePersist
     protected void onCreate() {
         occurredAt = LocalDateTime.now();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public ShipmentStatus getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(ShipmentStatus statusName) {
+        this.statusName = statusName;
+    }
+
+    public LocalDateTime getOccurredAt() {
+        return occurredAt;
+    }
+
+    public void setOccurredAt(LocalDateTime occurredAt) {
+        this.occurredAt = occurredAt;
+    }
+
+    public Shipment getShipment() {
+        return shipment;
+    }
+
+    public void setShipment(Shipment shipment) {
+        this.shipment = shipment;
     }
 }

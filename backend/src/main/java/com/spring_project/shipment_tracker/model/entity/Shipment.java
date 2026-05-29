@@ -2,7 +2,6 @@ package com.spring_project.shipment_tracker.model.entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.spring_project.shipment_tracker.util.ShipmentStatus;
@@ -22,16 +21,10 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 
 // Shipment.java
 @Entity
 @Table(name = "shipment")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Shipment {
 
     @Id
@@ -67,6 +60,24 @@ public class Shipment {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
+    public Shipment(Integer id, String trackingNumber, String origin, String destination, Double weight,
+            ShipmentStatus currentStatus, Supplier supplier, List<ShipmentEvent> events, LocalDateTime createdAt,
+            LocalDateTime updatedAt) {
+        this.id = id;
+        this.trackingNumber = trackingNumber;
+        this.origin = origin;
+        this.destination = destination;
+        this.weight = weight;
+        this.currentStatus = currentStatus;
+        this.supplier = supplier;
+        this.events = events;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public Shipment() {
+    }
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
@@ -76,5 +87,85 @@ public class Shipment {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTrackingNumber() {
+        return trackingNumber;
+    }
+
+    public void setTrackingNumber(String trackingNumber) {
+        this.trackingNumber = trackingNumber;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public ShipmentStatus getCurrentStatus() {
+        return currentStatus;
+    }
+
+    public void setCurrentStatus(ShipmentStatus currentStatus) {
+        this.currentStatus = currentStatus;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    public List<ShipmentEvent> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<ShipmentEvent> events) {
+        this.events = events;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
