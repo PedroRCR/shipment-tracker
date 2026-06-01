@@ -2,7 +2,6 @@ package com.spring_project.shipment_tracker.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +13,11 @@ import com.spring_project.shipment_tracker.service.ShipmentEventService;
 @RequestMapping("/shipment-event")
 public class ShipmentEventController {
 
-    @Autowired
     private ShipmentEventService ShipmentEventService;
+
+    public ShipmentEventController(ShipmentEventService shipmentEventService) {
+        ShipmentEventService = shipmentEventService;
+    }
 
     @GetMapping
     public List<ShipmentEvent> getAllShipmentEvents() {
