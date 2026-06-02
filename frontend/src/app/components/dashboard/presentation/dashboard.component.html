@@ -1,1 +1,7 @@
-<p>dashboard works!</p>
+<div>
+  <button (click)="changeUserRole(RoleType.Admin)">ADMIN</button>
+  <button (click)="changeUserRole(RoleType.Supplier)">SUPPLIER</button>
+</div>
+
+<p>Current role: {{ currentRole$ | async }}</p>
+
