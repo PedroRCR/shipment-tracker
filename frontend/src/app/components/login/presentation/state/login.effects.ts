@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap } from 'rxjs';
-//import { GetStatsUseCase } from '../../../application/use-cases/get-stats.use-case';
-import {
-} from './dashboard.actions';
+import { Actions } from '@ngrx/effects';
+import {} from './login.actions';
 
 @Injectable()
-export class DashboardEffects {
+export class LoginEffects {
   /*loadStats$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadStats),

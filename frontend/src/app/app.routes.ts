@@ -3,17 +3,17 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
 
   // ─── eager load ───────────────────────────────
   // small/always-needed pages load immediately
   {
-    path: 'dashboard',
+    path: 'login',
     loadComponent: () =>
-      import('./components/dashboard/presentation/dashboard.component').then(
-        (m) => m.DashboardComponent,
+      import('./components/login/presentation/login.component').then(
+        (m) => m.LoginComponent,
       ),
   },
 ];
@@ -79,11 +79,11 @@ export const routes: Routes = [
         (m) => m.NotFoundComponent,
       ),
   },
- * this.router.navigate(['/dashboard']);
+ * this.router.navigate(['/login']);
 this.router.navigate(['/user', id]);
-this.router.navigate(['/dashboard'], { queryParams: { tab: 'stats' } });
+this.router.navigate(['/login'], { queryParams: { tab: 'stats' } });
 
-<a routerLink="/dashboard">Go</a>
+<a routerLink="/login">Go</a>
 <a [routerLink]="['/user', userId]">Profile</a>
 
 @Input() id!: string;                          // modern, needs withComponentInputBinding
@@ -111,8 +111,8 @@ export class UserComponent implements OnInit {
   }
 
   // ─── Imperative navigation ───
-  goToDashboard() {
-    this.router.navigate(['/dashboard']);
+  goTologin() {
+    this.router.navigate(['/login']);
   }
 
   goToUser(id: string) {
@@ -120,7 +120,7 @@ export class UserComponent implements OnInit {
   }
 
   goWithQuery() {
-    this.router.navigate(['/dashboard'], {
+    this.router.navigate(['/login'], {
       queryParams: { tab: 'stats' },
     });
   }

@@ -3,8 +3,8 @@ export enum RoleType {
   Supplier = 'Supplier',
 }
 
-export interface DashboardState {
+export interface LoginState {
   userRole?: RoleType | undefined;
 }
 
-export const initialDashboardState: DashboardState = {};
+export const initialLoginState: LoginState = {};
