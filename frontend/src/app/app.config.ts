@@ -6,12 +6,23 @@ import { loginReducer } from './components/login/presentation/state/login.reduce
 import { LoginEffects } from './components/login/presentation/state/login.effects';
 
 import { routes } from './app.routes';
+import { dashboardReducer } from './components/dashboard/presentation/state/dashboard.reducer';
+import { DashboardEffects } from './components/dashboard/presentation/state/dashboard.effects';
+import { IDashboardRepository } from './components/dashboard/domain/repositories/IDashboardRepository';
+import { DashboardRepository } from './components/dashboard/data/repositories/dashboardRepository';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()),
-    provideStore({ login: loginReducer }),
-    provideEffects([LoginEffects]),
+    provideStore({ login: loginReducer, dashboard: dashboardReducer }),
+    provideEffects([LoginEffects, DashboardEffects]),
+    provideHttpClient(),
+    {
+      provide: IDashboardRepository,
+      useClass: DashboardRepository,
+    },
   ],
 };
+

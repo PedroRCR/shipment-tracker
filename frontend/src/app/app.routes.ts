@@ -16,9 +16,15 @@ export const routes: Routes = [
         (m) => m.LoginComponent,
       ),
   },
+  {
+    path: 'dashboard',
+    loadComponent: () =>
+      import('./components/dashboard/presentation/dashboard.component').then(
+        (m) => m.DashboardComponent,
+      ),
+  },
 ];
-
-/**
+/**frontend\src\app\components\dashboard\presentation\dashboard.component.ts
  * 
  * 
   // ─── lazy load ────────────────────────────────

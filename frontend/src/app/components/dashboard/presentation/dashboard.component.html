@@ -1,0 +1,15 @@
+@if ((currentRole$ | async) === RoleType.Admin) {
+  <div>
+    <button>Create</button>
+    <button>Check</button>
+  </div>
+} @else {
+  <div>list</div>
+  <ul>
+    @for (item of (shipmentsList$ | async); track item.id) {
+      <li>{{ item.id }}. {{ item.origin }} → {{ item.destination }}</li>
+    } @empty {
+      <li>No items</li>
+    }
+  </ul>
+}

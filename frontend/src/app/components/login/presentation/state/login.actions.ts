@@ -1,11 +1,11 @@
 import { createAction, props } from '@ngrx/store';
 import { RoleType } from './login.state';
 
-export enum UserTypes {
+export enum LoginTypes {
   setUserRole = '[Login] Set userRole',
 }
 
 export const setUserRole = createAction(
-  UserTypes.setUserRole,
+  LoginTypes.setUserRole,
   props<{ userRole: RoleType }>()
 );
