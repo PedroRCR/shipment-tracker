@@ -23,6 +23,13 @@ export const routes: Routes = [
         (m) => m.DashboardComponent,
       ),
   },
+  {
+    path: 'shipment/:shipmentId',
+    loadComponent: () =>
+      import('./components/dashboard/presentation/dashboard.component').then(
+        (m) => m.DashboardComponent,
+      ),
+  },
 ];
 /**frontend\src\app\components\dashboard\presentation\dashboard.component.ts
  * 

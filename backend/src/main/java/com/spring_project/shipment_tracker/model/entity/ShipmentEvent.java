@@ -8,12 +8,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
@@ -32,18 +29,17 @@ public class ShipmentEvent {
     @Column(name = "occurred_at", nullable = false)
     private LocalDateTime occurredAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "shipment_id", nullable = false)
-    private Shipment shipment;
+    @Column(name = "shipment_id", nullable = false)
+    private Integer shipmentId;
 
     public ShipmentEvent() {
     }
 
-    public ShipmentEvent(Integer id, ShipmentStatus statusName, LocalDateTime occurredAt, Shipment shipment) {
+    public ShipmentEvent(Integer id, ShipmentStatus statusName, LocalDateTime occurredAt, Integer shipmentId) {
         this.id = id;
         this.statusName = statusName;
         this.occurredAt = occurredAt;
-        this.shipment = shipment;
+        this.shipmentId = shipmentId;
     }
 
     @PrePersist
@@ -75,11 +71,11 @@ public class ShipmentEvent {
         this.occurredAt = occurredAt;
     }
 
-    public Shipment getShipment() {
-        return shipment;
+    public Integer getShipmentId() {
+        return shipmentId;
     }
 
-    public void setShipment(Shipment shipment) {
-        this.shipment = shipment;
+    public void setShipmentId(Integer shipmentId) {
+        this.shipmentId = shipmentId;
     }
 }

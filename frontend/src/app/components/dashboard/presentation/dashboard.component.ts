@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { userRoleSelector } from '../../login/presentation/state/login.selectors';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { Shipment } from '../domain/entities/shipment';
+import { Shipment } from '../../shipment/domain/entities/shipment';
 import { getSupplierShipments } from './state/dashboard.actions';
 import { DashboardState } from './state/dashboard.state';
 import { supplierShipmentsListSelector } from './state/dashboard.selectors';
@@ -29,5 +29,9 @@ export class DashboardComponent implements OnInit {
     this.currentRole$ = this.store.select(userRoleSelector);
     this.store.dispatch(getSupplierShipments({ supplierId: 1 }));
     this.shipmentsList$ = this.store.select(supplierShipmentsListSelector);
+  }
+
+  openShipment(shipmentId: number) {
+    console.log(shipmentId);
   }
 }

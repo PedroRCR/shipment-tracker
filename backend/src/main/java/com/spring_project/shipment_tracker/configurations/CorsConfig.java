@@ -1,4 +1,4 @@
-package com.spring_project.shipment_tracker;
+package com.spring_project.shipment_tracker.configurations;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

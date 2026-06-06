@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { IDashboardRepository } from '../repositories/IDashboardRepository';
-import { Shipment } from '../entities/shipment';
+import { Shipment } from '../../../shipment/domain/entities/shipment';
 import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })

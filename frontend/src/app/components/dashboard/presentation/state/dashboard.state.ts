@@ -1,4 +1,4 @@
-import { Shipment } from '../../domain/entities/shipment';
+import { Shipment } from '../../../shipment/domain/entities/shipment';
 
 export interface DashboardState {
   supplierShipmentsList: Shipment[];

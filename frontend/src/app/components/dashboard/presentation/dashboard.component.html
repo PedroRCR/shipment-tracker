@@ -5,11 +5,27 @@
   </div>
 } @else {
   <div>list</div>
-  <ul>
-    @for (item of (shipmentsList$ | async); track item.id) {
-      <li>{{ item.id }}. {{ item.origin }} → {{ item.destination }}</li>
-    } @empty {
-      <li>No items</li>
-    }
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Origin</th>
+        <th>Destination</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (shipment of shipmentsList$ | async; track shipment.id) {
+        <tr (click)="openShipment(shipment.id)">
+          <td>{{ shipment.id }}</td>
+          <td>{{ shipment.origin }}</td>
+          <td>{{ shipment.destination }}</td>
+        </tr>
+      } @empty {
+        <tr>
+          <td>No items</td>
+        </tr>
+      }
+    </tbody>
+  </table>
 }

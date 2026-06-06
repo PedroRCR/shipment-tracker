@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Shipment } from '../../domain/entities/shipment';
+import { Shipment } from '../../../shipment/domain/entities/shipment';
 
 export enum DashboardTypes {
   getSupplierShipments = '[Dashboard] get supplier shipments',
