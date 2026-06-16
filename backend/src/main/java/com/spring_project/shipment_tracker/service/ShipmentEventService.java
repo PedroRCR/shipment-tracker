@@ -19,7 +19,7 @@ public class ShipmentEventService {
         return shipmentEventRepository.findAll();
     }
 
-    public List<ShipmentEvent> getShipmentEvents(Integer shipmentId){
+    public List<ShipmentEvent> findByShipmentId(Integer shipmentId){
         return shipmentEventRepository.findByShipmentId(shipmentId);
     }
 }

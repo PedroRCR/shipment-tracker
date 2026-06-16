@@ -11,6 +11,7 @@ import { Shipment } from '../../shipment/domain/entities/shipment';
 import { getSupplierShipments } from './state/dashboard.actions';
 import { DashboardState } from './state/dashboard.state';
 import { supplierShipmentsListSelector } from './state/dashboard.selectors';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +24,10 @@ export class DashboardComponent implements OnInit {
   currentRole$!: Observable<RoleType | undefined>;
   shipmentsList$!: Observable<Shipment[]>;
 
-  constructor(private store: Store) {}
+  constructor(
+    private store: Store,
+    private route: Router,
+  ) {}
 
   ngOnInit() {
     this.currentRole$ = this.store.select(userRoleSelector);
@@ -32,6 +36,6 @@ export class DashboardComponent implements OnInit {
   }
 
   openShipment(shipmentId: number) {
-    console.log(shipmentId);
+    this.route.navigate(['/shipments', shipmentId]);
   }
 }

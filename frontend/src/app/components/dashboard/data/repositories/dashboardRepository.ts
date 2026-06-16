@@ -15,7 +15,7 @@ export class DashboardRepository extends IDashboardRepository {
 
   getShipmentsBySupplierId(supplierId: number): Observable<Shipment[]> {
     return this.http
-      .get<ShipmentModel[]>(`${this.baseUrl}shipments/supplier/${supplierId}`)
+      .get<ShipmentModel[]>(`${this.baseUrl}shipment/supplier/${supplierId}`)
       .pipe(map((models) => models.map(ShipmentMapper.fromJson)));
   }
 }

@@ -1,15 +1,10 @@
 package com.spring_project.shipment_tracker.model.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,18 +24,14 @@ public class Supplier {
     @Column(nullable = false)
     private String country;
 
-    @OneToMany(mappedBy = "supplier", fetch = FetchType.LAZY)
-    private List<Shipment> shipments = new ArrayList<>();
+    public Supplier() {
+    }
 
-    public Supplier(Integer id, String name, String email, String country, List<Shipment> shipments) {
+    public Supplier(Integer id, String name, String email, String country) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.country = country;
-        this.shipments = shipments;
-    }
-
-    public Supplier() {
     }
 
     public Integer getId() {
@@ -75,11 +66,5 @@ public class Supplier {
         this.country = country;
     }
 
-    public List<Shipment> getShipments() {
-        return shipments;
-    }
 
-    public void setShipments(List<Shipment> shipments) {
-        this.shipments = shipments;
-    }
 }

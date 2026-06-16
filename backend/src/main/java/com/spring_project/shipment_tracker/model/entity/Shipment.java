@@ -1,32 +1,23 @@
 package com.spring_project.shipment_tracker.model.entity;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.spring_project.shipment_tracker.util.ShipmentStatus;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
-// Shipment.java
 @Entity
 @Table(name = "shipment")
 public class Shipment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -47,36 +38,14 @@ public class Shipment {
     @Column(name = "current_status", nullable = false)
     private ShipmentStatus currentStatus;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "supplier_id", nullable = false)
-    private Supplier supplier;
-
-    @OneToMany(mappedBy = "shipment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ShipmentEvent> events = new ArrayList<>();
+    @Column(name = "supplier_id", nullable = false)
+    private Integer supplierId;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
-
-    public Shipment(Integer id, String trackingNumber, String origin, String destination, Double weight,
-            ShipmentStatus currentStatus, Supplier supplier, List<ShipmentEvent> events, LocalDateTime createdAt,
-            LocalDateTime updatedAt) {
-        this.id = id;
-        this.trackingNumber = trackingNumber;
-        this.origin = origin;
-        this.destination = destination;
-        this.weight = weight;
-        this.currentStatus = currentStatus;
-        this.supplier = supplier;
-        this.events = events;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
-    public Shipment() {
-    }
 
     @PrePersist
     protected void onCreate() {
@@ -87,6 +56,22 @@ public class Shipment {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
+    }
+
+    public Shipment(Integer id, String trackingNumber, String origin, String destination, Double weight,
+            ShipmentStatus currentStatus, Integer supplierId, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.trackingNumber = trackingNumber;
+        this.origin = origin;
+        this.destination = destination;
+        this.weight = weight;
+        this.currentStatus = currentStatus;
+        this.supplierId = supplierId;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public Shipment() {
     }
 
     public Integer getId() {
@@ -137,20 +122,12 @@ public class Shipment {
         this.currentStatus = currentStatus;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public Integer getSupplierId() {
+        return supplierId;
     }
 
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
-    }
-
-    public List<ShipmentEvent> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<ShipmentEvent> events) {
-        this.events = events;
+    public void setSupplierId(Integer supplierId) {
+        this.supplierId = supplierId;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -168,4 +145,5 @@ public class Shipment {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
+
 }

@@ -23,9 +23,4 @@ public class ShipmentEventController {
     public List<ShipmentEvent> getAllShipmentEvents() {
         return ShipmentEventService.getAllShipmentEvents();
     }
-
-    /*@GetMapping("shipment")
-    public List<ShipmentEvent> getSupplierShipmentEvents() {
-        return ShipmentEventService.findByShipmentId();
-    }*/
 }
