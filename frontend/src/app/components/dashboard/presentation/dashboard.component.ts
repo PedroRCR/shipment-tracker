@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { userRoleSelector } from '../../login/presentation/state/login.selectors';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { Shipment } from '../../shipment/domain/entities/shipment';
+import { Shipment } from '../../shipment/models/entities/shipment';
 import { getSupplierShipments } from './state/dashboard.actions';
 import { DashboardState } from './state/dashboard.state';
 import { supplierShipmentsListSelector } from './state/dashboard.selectors';
@@ -36,6 +36,6 @@ export class DashboardComponent implements OnInit {
   }
 
   openShipment(shipmentId: number) {
-    this.route.navigate(['/shipments', shipmentId]);
+    this.route.navigate(['/shipment', shipmentId]);
   }
 }

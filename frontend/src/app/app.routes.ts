@@ -26,8 +26,8 @@ export const routes: Routes = [
   {
     path: 'shipment/:shipmentId',
     loadComponent: () =>
-      import('./components/dashboard/presentation/dashboard.component').then(
-        (m) => m.DashboardComponent,
+      import('./components/shipment/shipment.component').then(
+        (m) => m.ShipmentComponent,
       ),
   },
 ];

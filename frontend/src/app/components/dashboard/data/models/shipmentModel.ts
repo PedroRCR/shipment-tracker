@@ -1,4 +1,4 @@
-import { Shipment, ShipmentStatus } from '../../../shipment/domain/entities/shipment';
+import { Shipment, ShipmentStatus } from '../../../shipment/models/entities/shipment';
 
 export interface ShipmentModel {
   id: number;

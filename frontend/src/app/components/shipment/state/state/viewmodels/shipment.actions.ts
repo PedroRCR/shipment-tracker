@@ -1,6 +1,6 @@
-import { createAction, props } from "@ngrx/store";
-import { Shipment } from "../../../domain/entities/shipment";
-import { ShipmentEvent } from "../../../domain/entities/shipmentEvent";
+import { createAction, props } from '@ngrx/store';
+import { Shipment } from '../../../models/entities/shipment';
+import { ShipmentEvent } from '../../../models/entities/shipmentEvent';
 
 export enum ShipmentTypes {
   setCurrentShipment = '[Shipment] Set current shipment',
@@ -13,26 +13,30 @@ export enum ShipmentTypes {
 
 export const setCurrentShipment = createAction(
   ShipmentTypes.setCurrentShipment,
-  props<{ shipmentId: number }>()
+  props<{ shipmentId: number }>(),
 );
 
 export const setCurrentShipmentSuccess = createAction(
   ShipmentTypes.setCurrentShipmentSuccess,
-  props<{ shipment: Shipment }>()
+  props<{ shipment: Shipment }>(),
 );
 
 export const setCurrentShipmentFail = createAction(
   ShipmentTypes.setCurrentShipmentFail,
-  props<{ error: string }>()
+  props<{ error: string }>(),
 );
 
 export const getShipmentEvents = createAction(
   ShipmentTypes.getShipmentEvents,
-  props<{ shipmentId: number }>()
+  props<{ shipmentId: number }>(),
 );
 
 export const getShipmentEventsSuccess = createAction(
   ShipmentTypes.getShipmentEventsSuccess,
-  props<{ shipmentEventsList: ShipmentEvent[] }>()
+  props<{ shipmentEventsList: ShipmentEvent[] }>(),
 );
 
+export const getShipmentEventsFail = createAction(
+  ShipmentTypes.getShipmentEventsFail,
+  props<{ error: string }>(),
+);

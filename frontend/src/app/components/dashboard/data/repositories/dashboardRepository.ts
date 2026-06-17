@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IDashboardRepository } from '../../domain/repositories/IDashboardRepository';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { Shipment } from '../../../shipment/domain/entities/shipment';
+import { Shipment } from '../../../shipment/models/entities/shipment';
 import { ShipmentMapper, ShipmentModel } from '../models/shipmentModel';
 
 @Injectable({ providedIn: 'root' })
