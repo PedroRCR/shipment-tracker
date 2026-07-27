@@ -1,31 +1,43 @@
-@if ((currentRole$ | async) === RoleType.Admin) {
-  <div>
-    <button>Create</button>
-    <button>Check</button>
+<div class="center column">
+  <div class="title">
+    <h1>
+      {{
+        (currentRole$ | async) === RoleType.Admin
+          ? "Manage your Shipments"
+          : "List of Shipments"
+      }}
+    </h1>
   </div>
-} @else {
-  <div>list</div>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Origin</th>
-        <th>Destination</th>
-      </tr>
-    </thead>
+  <div class="content">
+    @if ((currentRole$ | async) === RoleType.Admin) {
+      <div class="buttons">
+        <button>Create</button>
+        <button>Check</button>
+      </div>
+    } @else {
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Origin</th>
+            <th>Destination</th>
+          </tr>
+        </thead>
 
-    <tbody>
-      @for (shipment of shipmentsList$ | async; track shipment.id) {
-        <tr (click)="openShipment(shipment.id)">
-          <td>{{ shipment.id }}</td>
-          <td>{{ shipment.origin }}</td>
-          <td>{{ shipment.destination }}</td>
-        </tr>
-      } @empty {
-        <tr>
-          <td>No items</td>
-        </tr>
-      }
-    </tbody>
-  </table>
-}
+        <tbody>
+          @for (shipment of shipmentsList$ | async; track shipment.id) {
+            <tr (click)="openShipment(shipment.id)">
+              <td>{{ shipment.id }}</td>
+              <td>{{ shipment.origin }}</td>
+              <td>{{ shipment.destination }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td>No items</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</div>

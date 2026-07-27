@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.spring_project.shipment_tracker.model.dto.CreateShipmentEventDto;
 import com.spring_project.shipment_tracker.model.entity.ShipmentEvent;
 import com.spring_project.shipment_tracker.repository.ShipmentEventRepository;
 
@@ -21,5 +22,13 @@ public class ShipmentEventService {
 
     public List<ShipmentEvent> findByShipmentId(Integer shipmentId){
         return shipmentEventRepository.findByShipmentId(shipmentId);
+    }
+
+    public ShipmentEvent createShipmentEvent(CreateShipmentEventDto dto){
+        ShipmentEvent shipmentEvent = new ShipmentEvent();
+        shipmentEvent.setStatusName(dto.getStatusName());
+        shipmentEvent.setOccurredAt(dto.getOccurredAt());
+        shipmentEvent.setShipmentId(dto.getShipmentId());
+        return shipmentEventRepository.save(shipmentEvent);
     }
 }

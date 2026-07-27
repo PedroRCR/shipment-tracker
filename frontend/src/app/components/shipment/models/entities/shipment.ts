@@ -1,4 +1,3 @@
-// ✅ string enum — explicit, API-friendly, no numeric surprises
 export enum ShipmentStatus {
   CREATED = 'CREATED',
   PICKED_UP = 'PICKED_UP',

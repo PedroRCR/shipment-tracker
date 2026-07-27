@@ -1,7 +1,12 @@
-<div>
-  <button (click)="changeUserRole(RoleType.Admin)">ADMIN</button>
-  <button (click)="changeUserRole(RoleType.Supplier)">SUPPLIER</button>
+<div class="center column">
+  <div class="title">
+    <h1>Shipment Tracker</h1>
+  </div>
+  <div class="content buttons">
+    <button (click)="changeUserRole(RoleType.Admin)">ADMIN</button>
+    <button (click)="changeUserRole(RoleType.Supplier)">SUPPLIER</button>
+  </div>
+  <p>Current role: {{ currentRole$ | async }}</p>
 </div>
 
-<p>Current role: {{ currentRole$ | async }}</p>
 

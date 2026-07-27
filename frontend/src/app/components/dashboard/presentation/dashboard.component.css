@@ -1,0 +1,35 @@
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 25%;
+}
+
+.center.column {
+  gap: 10%;
+  flex-direction: column;
+}
+
+table {
+  table-layout: fixed;
+  width: 70%;
+  margin: 10px auto;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th {
+  border-bottom: 2px solid #000;
+}
+
+th,
+td {
+  padding: 0.6em;
+}
+
+tbody tr:hover {
+  background-color: rgb(188, 33, 33);
+  color: #f4f4f4;
+  border-color: #f4f4f4;
+  cursor: pointer;
+}

@@ -1,23 +1,36 @@
-<h1>Shipment Details</h1>
-@if (currentShipment$ | async; as shipment) {
-  <div>
-    <p><strong>ID:</strong> {{ shipment.id }}</p>
-    <p><strong>Status:</strong> {{ shipment.shipmentStatus }}</p>
-    <p><strong>Origin:</strong> {{ shipment.origin }}</p>
-    <p><strong>Destination:</strong> {{ shipment.destination }}</p>
+<div class="center column">
+  <div class="title">
+    <h1>Shipment Details</h1>
   </div>
-} @else {
-  <div>
-    <p>Loading shipment details...</p>
+  <div class="content">
+    @if (currentShipment$ | async; as shipment) {
+      <div class="shipment-information">
+        <div class="row">
+          <p><strong>ID:</strong> {{ shipment.id }}</p>
+          <p><strong>Status:</strong> {{ shipment.shipmentStatus }}</p>
+        </div>
+        <div class="row">
+          <p><strong>Origin:</strong> {{ shipment.origin }}</p>
+          <p><strong>Destination:</strong> {{ shipment.destination }}</p>
+        </div>
+      </div>
+    } @else {
+      <div>
+        <p>Loading shipment details...</p>
+      </div>
+    }
+    <div class="events">
+      <h2>Events</h2>
+      @for (event of (shipmentEvents$ | async) ?? []; track event.id) {
+        <div class="row">
+          <p><strong>Status:</strong> {{ event.statusName }}</p>
+          <p>
+            <strong>Occurred At:</strong> {{ event.occurredAt | date: "short" }}
+          </p>
+        </div>
+      } @empty {
+        <p>No events found for this shipment.</p>
+      }
+    </div>
   </div>
-}
-
-<h2>Events</h2>
-@for (event of (shipmentEvents$ | async) ?? []; track event.id) {
-  <div>
-    <p><strong>Status:</strong> {{ event.statusName }}</p>
-    <p><strong>Occurred At:</strong> {{ event.occurredAt | date: 'short' }}</p>
-  </div>
-} @empty {
-  <p>No events found for this shipment.</p>
-}
+</div>
