@@ -1,0 +1,14 @@
+<ng-container>
+  <div class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h1>{{ title }}</h1>
+        <span (click)="closeModal()"><strong>X</strong></span>
+      </div>
+      <div class="modal-content">
+        <ng-content></ng-content>
+      </div>
+    </div>
+    <div class="backdrop"></div>
+  </div>
+</ng-container>

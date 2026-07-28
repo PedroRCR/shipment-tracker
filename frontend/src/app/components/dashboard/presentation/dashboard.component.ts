@@ -12,10 +12,11 @@ import { getSupplierShipments } from './state/dashboard.actions';
 import { DashboardState } from './state/dashboard.state';
 import { supplierShipmentsListSelector } from './state/dashboard.selectors';
 import { Router } from '@angular/router';
+import { ModalComponent } from '../../../modal-component/modal-component.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, ModalComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
@@ -23,6 +24,9 @@ export class DashboardComponent implements OnInit {
   protected readonly RoleType = RoleType;
   currentRole$!: Observable<RoleType | undefined>;
   shipmentsList$!: Observable<Shipment[]>;
+
+  showCreateShipmentModal: boolean = false;
+  showCheckShipmentModal: boolean = false;
 
   constructor(
     private store: Store,
@@ -37,5 +41,18 @@ export class DashboardComponent implements OnInit {
 
   openShipment(shipmentId: number) {
     this.route.navigate(['/shipment', shipmentId]);
+  }
+
+  openModal(modalType: string) {
+    switch (modalType) {
+      case 'Create':
+        this.showCreateShipmentModal = true;
+        break;
+      case 'Check':
+        this.showCheckShipmentModal = true;
+        break;
+      default:
+        break;
+    }
   }
 }

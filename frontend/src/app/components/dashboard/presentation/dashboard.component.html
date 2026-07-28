@@ -11,8 +11,8 @@
   <div class="content">
     @if ((currentRole$ | async) === RoleType.Admin) {
       <div class="buttons">
-        <button>Create</button>
-        <button>Check</button>
+        <button (click)="openModal('Create')">CREATE</button>
+        <button (click)="openModal('Check')">CHECK</button>
       </div>
     } @else {
       <table>
@@ -41,3 +41,24 @@
     }
   </div>
 </div>
+
+@if (showCreateShipmentModal === true) {
+  <app-modal-component title="New Shipment">
+    <div class="modal-content">
+      <div class="form-row">
+        <label for="origin">Origin</label>
+        <input type="text" id="origin" name="origin" required />
+      </div>
+      <div class="form-row">
+        <label for="destination">Destination</label>
+        <input type="text" id="destination" name="destination" required />
+      </div>
+    </div>
+  </app-modal-component>
+}
+
+@if (showCheckShipmentModal === true) {
+  <app-modal-component title="Search for Shipment">
+    ShipmentId
+  </app-modal-component>
+}
